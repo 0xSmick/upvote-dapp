@@ -15,8 +15,10 @@ pub mod upvote {
     pub fn add_submission(_ctx: Context<AddSubmission>, title: String, description:String) -> Result <()> {
         let base_account = &mut _ctx.accounts.base_account;
         let user = &mut _ctx.accounts.user;
+        let clock: Clock = Clock::get().unwrap();
 
         let submission = SubmissionStruct {
+            timestamp: clock.unix_timestamp,
             title: title.to_string(),
             description: description.to_string(),
             user_address: *user.to_account_info().key,
@@ -48,6 +50,7 @@ pub struct AddSubmission<'info> {
 
 #[derive(Debug, Clone, AnchorSerialize, AnchorDeserialize)]
 pub struct SubmissionStruct {
+    pub timestamp: i64,
     pub title: String,
     pub description: String,
     pub user_address: Pubkey,
