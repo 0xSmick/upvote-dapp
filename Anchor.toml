@@ -1,0 +1,14 @@
+[features]
+seeds = false
+[programs.devnet]
+upvote = "7LGT8vNzfWuQ1utvdLU8r5iYiydaHpKKJTfwB2pQL7PZ"
+
+[registry]
+url = "https://anchor.projectserum.com"
+
+[provider]
+cluster = "devnet"
+wallet = "./id.json"
+
+[scripts]
+test = "node tests/upvote.js"
